@@ -60,11 +60,13 @@ function get_tweets(keyword, location, radius, start_date="", end_date="") {
       if(end_date) {
         q_query += "until:" + start_date; 
       }
-      client.get('search/tweets', {q: q_query, geocode: location_query}, function(error, tweets, response) {
+      client.get('search/tweets', {q: q_query, geocode: location_query, count: 100}, function(error, tweets, response) {
         var tweet_text = tweets.statuses.map(function(tweet) {
             return tweet.text
+              .replace(/^(?=.*[A-Z0-9])[\w.,!"'\/$ ]+$/i, '')
+              .toLowerCase()
      
-        }).join(". \n");
+        }).join("\n");
         // console.log(tweet_text)
         d.resolve(tweet_text);
       })
@@ -95,3 +97,11 @@ function tweets_in_txt_file(keyword, filename, location, radius, start_date="", 
     });
 }
 
+
+// get_tweets("trump", "New York, NY", "10")
+// .then(
+//   function(result){
+//     console.log(result)
+//   }
+// );
+tweets_in_txt_file("trump", "content.txt", "New York, NY", "2")
