@@ -27,6 +27,10 @@ function get_slangonym(f1, f2, word) {
     return d;
 }
 
+module.exports = {
+    get_slangonym: get_slangonym
+}
+
 get_slangonym("content.txt", "idk.txt", "dasflksa").then(
     function(result) {
         console.log(result)

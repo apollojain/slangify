@@ -1,4 +1,1 @@
-- Create a chain from keyword/function call to end list of synonyms
-- Eliminate keyword in the actual retrieval of tweets
 - Map reduce for retrieval of all the words
-- Have random hashes for all text file names
