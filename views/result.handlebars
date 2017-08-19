@@ -1,3 +1,9 @@
 <div class="container">
-    <h1>Example App: Home {{data.radius}}</h1>
+    <h1>Synonyms and Slang for {{data.keyword}} in {{data.address}}</h1>
+
+    <ol class="slangonym_list">
+    {{#each slangonym}}
+        <li>{{this}}</li>
+    {{/each}}
+    </ol>
 </div>

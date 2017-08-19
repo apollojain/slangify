@@ -21,9 +21,3 @@ function slangonym_processing(keyword, location, radius, start_date="", end_date
 module.exports = {
   slangonym_processing: slangonym_processing
 }
-
-slangonym_processing("melania", "New York, NY", "20").then(
-  function(result) {
-      console.log(result)
-  }
-)
