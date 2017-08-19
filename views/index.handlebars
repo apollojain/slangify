@@ -1,0 +1,61 @@
+
+
+<div class="container">
+  <h2></h2>
+  <form action = "/process_get" method = "GET">
+    <div class="form-group">
+        <label for="keyword">Email:</label>
+        <input type="text" class="form-control" id="keyword" placeholder="Enter keyword" name="keyword">
+    </div>
+    <div class="form-group">
+        <label for="address">Address or Location:</label>
+        <input type="text" class="form-control" id="address" placeholder="Enter Address or Location" name="address">
+    </div>
+    <div class="form-group">
+        <label for="radius">Radius (mi):</label>
+        <input type="number" class="form-control" id="radius" placeholder="Radius (mi)" name="radius">
+    </div>
+    <div class="form-group"> <!-- Date input -->
+        <label class="control-label" for="start_date">Start Date</label>
+        <input class="form-control" id="start_date" name="start_date" placeholder="MM/DD/YYY" type="text"/>
+    </div>
+    <div class="form-group"> <!-- Date input -->
+        <label class="control-label" for="end_date">End Date</label>
+        <input class="form-control" id="end_date" name="end_date" placeholder="MM/DD/YYY" type="text"/>
+    </div>
+
+    {{!-- <div class="input-group date" data-provide="datepicker">
+        <label class="control-label" for="start_date">End Date</label>
+        <input class="form-control" id="start_date" name="start_date" placeholder="MM/DD/YYY" type="text"/>
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+        </div>
+    </div>
+
+    <div class="input-group date" data-provide="datepicker">
+        <label class="control-label" for="end_date">End Date</label>
+        <input class="form-control" id="end_date" name="end_date" placeholder="MM/DD/YYY" type="text"/>
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+        </div>
+    </div> --}}
+
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+<script>
+    $(document).ready(function(){
+      var start_date_input=$('input[name="start_date"]'); //our date input has the name "date"
+      var end_date_input=$('input[name="end_date"]');
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      start_date_input.datepicker(options);
+      end_date_input.datepicker(options);
+    })
+</script>

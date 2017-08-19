@@ -1,1 +1,4 @@
-- Map reduce for retrieval of all the words
+- Map reduce for retrieval of all the words, since we need way more data
+- Create the user interface
+    * form
+    * display ListView

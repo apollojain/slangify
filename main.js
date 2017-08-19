@@ -1,15 +1,29 @@
 var tweet_processing = require('./tweet_processing')
 var slangonym = require('./slangonym')
 var crypto = require("crypto");
+var Promise = require('promise-simple');
 
 function slangonym_processing(keyword, location, radius, start_date="", end_date="") {
-  var f1 = crypto.randomBytes(20).toString('hex');
-  var f2 = crypto.randomBytes(20).toString('hex');
-  tweet_processing.tweets_in_txt_file(keyword, f1, location, radius, start_date, end_date)
-  slangonym.get_slangonym(f1, f2, keyword).then(
-    function(result) {
-      console.log(result)
-    }
-  )
+  var d = Promise.defer();
+  var f1 = "processing/" + crypto.randomBytes(20).toString('hex') + ".txt";
+  var f2 = "processing/" + crypto.randomBytes(20).toString('hex') + ".txt";
+  tweet_processing.tweets_in_txt_file(keyword, f1, location, radius, start_date, end_date).then(function(result) {
+    slangonym.get_slangonym(f1, f2, keyword).then(
+      function(result) {
+        d.resolve(result)
+      }
+    )
+  });
+  
+  return d;
 }
-slangonym_processing("trump", "content.txt", "idk.txt", "New York, NY", "2")
+
+module.exports = {
+  slangonym_processing: slangonym_processing
+}
+
+slangonym_processing("melania", "New York, NY", "20").then(
+  function(result) {
+      console.log(result)
+  }
+)

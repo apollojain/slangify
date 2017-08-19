@@ -84,17 +84,23 @@ function get_tweets(keyword, location, radius, start_date="", end_date="") {
 //   console.log(result.length)
 // });
 function tweets_in_txt_file(keyword, filename, location, radius, start_date="", end_date="") {
+  var d = Promise.defer();
   get_tweets(keyword, location, radius, start_date, end_date)
   .then(
     function(result){
       fs.truncate(filename, 0, function() {
         fs.writeFile(filename, result, function (err) {
+            
             if (err) {
+              d.reject(err)
                 return console.log("Error writing file: " + err);
+            } else {
+              d.resolve(filename)
             }
         });
       });
     });
+  return d;
 }
 
 module.exports = {
